@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ public class NowPlayingFragment extends Fragment {
     private RecyclerAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<NowPlayingMovieList> movieListThumblain;
+    private  int totalPages;
 
 
 
@@ -80,6 +82,8 @@ public class NowPlayingFragment extends Fragment {
 
                      NowPlayingResponse nowPlayingResponse = response.body();
                      ArrayList<NowPlayingMovieList> nowPlayingList = nowPlayingResponse.getResults();
+                       totalPages= nowPlayingResponse.getTotal_pages();
+                     Log.i("Pagetotal",totalPages+"");
                      onDownloadComplete(nowPlayingList);
 
 

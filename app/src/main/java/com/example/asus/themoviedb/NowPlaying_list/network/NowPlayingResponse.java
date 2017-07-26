@@ -12,11 +12,21 @@ public class NowPlayingResponse {
 
         public ArrayList<NowPlayingMovieList> results;
 
+       public  int total_pages;
+
     public ArrayList<NowPlayingMovieList> getResults() {
         return results;
     }
 
     public void setResults(ArrayList<NowPlayingMovieList> results) {
         this.results = results;
+    }
+
+    public int getTotal_pages() {
+        return total_pages;
+    }
+
+    public void setTotal_pages(int total_pages) {
+        this.total_pages = total_pages;
     }
 }
