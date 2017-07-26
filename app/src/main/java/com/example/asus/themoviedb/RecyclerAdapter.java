@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,10 +19,10 @@ import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter <RecyclerAdapter.MyViewHolder> {
 
-      private List<MovieListThumblain> movieListThumblains;
+      private ArrayList<MovieListThumblain> movieListThumblains;
       private Context context;
 
-      public RecyclerAdapter(List<MovieListThumblain> movieListThumblains , Context context){
+      public RecyclerAdapter(ArrayList<MovieListThumblain> movieListThumblains , Context context){
           this.movieListThumblains = movieListThumblains;
           this.context = context;
 
@@ -44,7 +45,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter <RecyclerAdapter.MyVie
         holder.nameTextView.setText(movieListThumblains.get(position).getTitle());
         holder.yearTextView.setText(year[0]);
         holder.ratingTextView.setText(rating);
-        Picasso.with(context).load(movieListThumblains.get(position).getImagePath()).into(holder.poster);
+        Picasso.with(context).load("http://image.tmdb.org/t/p/w500"+movieListThumblains.get(position).getImagePath())
+                .into(holder.poster);
 
 
     }

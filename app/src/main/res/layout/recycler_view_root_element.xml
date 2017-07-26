@@ -2,32 +2,30 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="170dp"
-    android:paddingBottom="10dp"
-    android:paddingTop="10dp">
+    android:layout_height="150dp"
+    android:paddingTop="15dp"
+    android:paddingBottom="15dp">
 
     <ImageView
         android:id="@+id/mainImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/images"
-        android:layout_marginRight="277dp"
-        android:layout_marginEnd="277dp"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:src="@mipmap/ic_launcher"
+        android:scaleType="centerCrop"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/yearTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_toRightOf="@+id/mainImageView"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="118dp"
-        android:layout_marginStart="118dp"
-        android:layout_marginTop="20dp"
-        android:text="2014" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="2014"
+        android:textSize="11sp"/>
 
     <TextView
         android:id="@+id/nameTextView"
@@ -36,7 +34,6 @@
         android:layout_alignLeft="@+id/yearTextView"
         android:layout_alignStart="@+id/yearTextView"
         android:layout_below="@+id/yearTextView"
-        android:layout_marginTop="4dp"
         android:textStyle="bold"
         android:text="Despicable Me 3" />
 
@@ -47,31 +44,32 @@
         android:layout_alignLeft="@+id/nameTextView"
         android:layout_alignStart="@+id/nameTextView"
         android:layout_below="@+id/nameTextView"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="5dp"
+        android:textSize="13sp"
         android:text="Science Fiction, Adventure, Animation, Comedy, Family" />
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:src="@drawable/download"
         android:id="@+id/iconImageView"
-        android:layout_alignLeft="@+id/genreTextView"
-        android:layout_alignStart="@+id/genreTextView"
-        android:layout_below="@+id/genreTextView"
-        android:layout_marginTop="14dp"/>
+        android:layout_toRightOf="@+id/mainImageView"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+
+        />
 
     <TextView
         android:id="@+id/ratingTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textSize="20sp"
+        android:textSize="14sp"
         android:text="6.2"
-        android:layout_alignBottom="@id/iconImageView"
-        android:layout_toRightOf="@+id/yearTextView"
-        android:layout_toEndOf="@+id/iconImageView"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="3dp"
-        android:layout_marginStart="10dp" />
+        android:layout_toRightOf="@+id/iconImageView"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginStart="5dp" />
 
 </RelativeLayout>

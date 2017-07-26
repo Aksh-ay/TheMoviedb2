@@ -8,4 +8,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="api_key">06d7dd44f460db5a7ba23188c8bc64b2</string>
+
 </resources>
