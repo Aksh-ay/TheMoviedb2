@@ -3,7 +3,6 @@ package com.example.asus.themoviedb;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -12,6 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.asus.themoviedb.NowPlaying_list.NowPlayingFragment;
+import com.example.asus.themoviedb.Popular_list.PopularFragment;
+import com.example.asus.themoviedb.TopRated_list.TopRatedFragment;
+import com.example.asus.themoviedb.Upcoming_list.UpcomingMoviesFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -33,9 +37,10 @@ public class MainActivity extends AppCompatActivity
 
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        viewPagerAdapter.addFragments(new NowPlaying(),"Now Playing");
-        viewPagerAdapter.addFragments(new Popular(),"Popular");
-        viewPagerAdapter.addFragments(new TopRated(),"Top Rated");
+        viewPagerAdapter.addFragments(new NowPlayingFragment(),"Now Playing");
+        viewPagerAdapter.addFragments(new UpcomingMoviesFragment(),"Upcoming");
+        viewPagerAdapter.addFragments(new PopularFragment(),"Popular");
+        viewPagerAdapter.addFragments(new TopRatedFragment(),"Top Rated");
         viewPager.setAdapter(viewPagerAdapter);
 
         tabLayout.setupWithViewPager(viewPager);

@@ -1,4 +1,4 @@
-package com.example.asus.themoviedb;
+package com.example.asus.themoviedb.NowPlaying_list;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.asus.themoviedb.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by ASUS on 7/26/2017.
@@ -19,10 +19,10 @@ import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter <RecyclerAdapter.MyViewHolder> {
 
-      private ArrayList<MovieListThumblain> movieListThumblains;
+      private ArrayList<NowPlayingMovieList> movieListThumblains;
       private Context context;
 
-      public RecyclerAdapter(ArrayList<MovieListThumblain> movieListThumblains , Context context){
+      public RecyclerAdapter(ArrayList<NowPlayingMovieList> movieListThumblains , Context context){
           this.movieListThumblains = movieListThumblains;
           this.context = context;
 
@@ -31,7 +31,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter <RecyclerAdapter.MyVie
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_root_element,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.now_playing_recycler_element,parent,false);
 
         return new MyViewHolder(view);
     }

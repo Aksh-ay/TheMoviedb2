@@ -1,7 +1,4 @@
-package com.example.asus.themoviedb;
-
-import java.util.ArrayList;
-import java.util.List;
+package com.example.asus.themoviedb.NowPlaying_list.network;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

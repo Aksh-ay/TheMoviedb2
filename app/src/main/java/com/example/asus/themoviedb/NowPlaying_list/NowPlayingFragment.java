@@ -1,4 +1,4 @@
-package com.example.asus.themoviedb;
+package com.example.asus.themoviedb.NowPlaying_list;
 
 
 import android.os.Bundle;
@@ -10,8 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.asus.themoviedb.NowPlaying_list.network.NowPlayingInterface;
+import com.example.asus.themoviedb.NowPlaying_list.network.NowPlayingResponse;
+import com.example.asus.themoviedb.R;
+
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,18 +26,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NowPlaying extends Fragment {
+public class NowPlayingFragment extends Fragment {
 
     public RecyclerView recyclerView;
     private RecyclerAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<MovieListThumblain> movieListThumblain;
+    private ArrayList<NowPlayingMovieList> movieListThumblain;
 
 
 
 
 
-    public NowPlaying() {
+    public NowPlayingFragment() {
         // Required empty public constructor
     }
 
@@ -43,7 +46,7 @@ public class NowPlaying extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_now_playing, container, false);
+        View v = inflater.inflate(R.layout.now_playing_fragment, container, false);
 
         movieListThumblain = new ArrayList<>();
 
@@ -55,12 +58,12 @@ public class NowPlaying extends Fragment {
         recyclerView.setAdapter(adapter);
 
 
-         fetchNowPlayin();
+         fetchNowPlaying();
         return v;
 
     }
 
-    private void fetchNowPlayin() {
+    private void fetchNowPlaying() {
 
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("https://api.themoviedb.org/3/movie/")
@@ -76,7 +79,7 @@ public class NowPlaying extends Fragment {
                  public void onResponse(Call<NowPlayingResponse> call, Response<NowPlayingResponse> response) {
 
                      NowPlayingResponse nowPlayingResponse = response.body();
-                     ArrayList<MovieListThumblain> nowPlayingList = nowPlayingResponse.getResults();
+                     ArrayList<NowPlayingMovieList> nowPlayingList = nowPlayingResponse.getResults();
                      onDownloadComplete(nowPlayingList);
 
 
@@ -89,7 +92,7 @@ public class NowPlaying extends Fragment {
              });
     }
 
-    private void onDownloadComplete(ArrayList<MovieListThumblain> nowPlayingList) {
+    private void onDownloadComplete(ArrayList<NowPlayingMovieList> nowPlayingList) {
         movieListThumblain.clear();
         movieListThumblain.addAll(nowPlayingList);
         adapter.notifyDataSetChanged();

@@ -1,12 +1,12 @@
-package com.example.asus.themoviedb;
+package com.example.asus.themoviedb.Popular_list;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by ASUS on 7/25/2017.
+ * Created by ASUS on 7/26/2017.
  */
 
-public class MovieListThumblain {
+public class PopularMovieList {
 
     @SerializedName("release_date")
     private String releaseDate;

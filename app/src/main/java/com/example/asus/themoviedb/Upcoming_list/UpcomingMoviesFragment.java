@@ -1,4 +1,4 @@
-package com.example.asus.themoviedb;
+package com.example.asus.themoviedb.Upcoming_list;
 
 
 import android.os.Bundle;
@@ -7,14 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.asus.themoviedb.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TopRated extends Fragment {
+public class UpcomingMoviesFragment extends Fragment {
 
 
-    public TopRated() {
+    public UpcomingMoviesFragment() {
         // Required empty public constructor
     }
 
@@ -23,7 +24,7 @@ public class TopRated extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_top_rated, container, false);
+        return inflater.inflate(R.layout.upcoming_movies_fragment, container, false);
     }
 
 }
