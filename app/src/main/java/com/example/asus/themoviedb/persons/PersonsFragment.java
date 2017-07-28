@@ -1,4 +1,4 @@
-package com.example.asus.themoviedb;
+package com.example.asus.themoviedb.persons;
 
 
 import android.os.Bundle;
@@ -6,18 +6,21 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.LoginFilter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.asus.themoviedb.MainActivity;
+import com.example.asus.themoviedb.R;
+import com.example.asus.themoviedb.network.ApiClient;
+import com.example.asus.themoviedb.network.ApiInterface;
+import com.example.asus.themoviedb.network.PersonsResponse;
 
 import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 
 /**

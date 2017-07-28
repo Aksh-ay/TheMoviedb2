@@ -1,4 +1,4 @@
-package com.example.asus.themoviedb;
+package com.example.asus.themoviedb.movies_tvs;
 
 
 import android.os.Bundle;
@@ -9,21 +9,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.asus.themoviedb.R;
+import com.example.asus.themoviedb.ViewPagerAdapter;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TvShowsFragment extends Fragment {
+public class MoviesFragment extends Fragment {
 
-    public static boolean tvFlag = false;
+    public static boolean movieFlag = false;
 
     TabLayout tabLayout;
     ViewPager viewPager;
     ViewPagerAdapter viewPagerAdapter;
 
 
-    public TvShowsFragment() {
+    public MoviesFragment() {
         // Required empty public constructor
     }
 
@@ -31,28 +33,31 @@ public class TvShowsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.viewpager_root_fragment, container, false);
 
-        tvFlag=true;
-        MoviesFragment.movieFlag = false;
+        movieFlag = true ;
+        TvShowsFragment.tvFlag =false;
 
-        // Inflate the layout for this fragment
         tabLayout = (TabLayout) v.findViewById(R.id.tabLayout);
         viewPager = (ViewPager) v.findViewById(R.id.viewPager);
 
 
         viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
-
-        viewPagerAdapter.addFragments(new ItemsListFragment(),"AIRING TODAY");
-        viewPagerAdapter.addFragments(new ItemsListFragment(),"ON THE AIR");
+        viewPagerAdapter.addFragments(new ItemsListFragment(),"NOW PLAYING");
+        viewPagerAdapter.addFragments(new ItemsListFragment(),"UPCOMING");
         viewPagerAdapter.addFragments(new ItemsListFragment(),"POPULAR");
         viewPagerAdapter.addFragments(new ItemsListFragment(),"TOP RATED");
+
+
         viewPager.setAdapter(viewPagerAdapter);
 
         tabLayout.setupWithViewPager(viewPager);
 
 
+
+
         return v;
-        }
+    }
 
 }

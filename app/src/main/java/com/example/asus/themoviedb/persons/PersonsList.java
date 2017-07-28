@@ -1,4 +1,4 @@
-package com.example.asus.themoviedb;
+package com.example.asus.themoviedb.persons;
 
 import com.google.gson.annotations.SerializedName;
 

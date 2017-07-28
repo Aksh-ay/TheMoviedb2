@@ -1,4 +1,4 @@
-package com.example.asus.themoviedb;
+package com.example.asus.themoviedb.persons;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.asus.themoviedb.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

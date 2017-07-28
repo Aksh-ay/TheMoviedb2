@@ -1,4 +1,4 @@
-package com.example.asus.themoviedb;
+package com.example.asus.themoviedb.movies_tvs;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.asus.themoviedb.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -19,13 +20,15 @@ import java.util.ArrayList;
 public class RecyclerAdapter extends RecyclerView.Adapter <RecyclerAdapter.MyViewHolder> {
 
       private ArrayList<ItemsList> itemList;
+      private ArrayList<GenreList> genreLists;
       private Context context;
       String[] year;
 
 
-      public RecyclerAdapter(ArrayList<ItemsList> topRatedItemsLists, Context context){
-          this.itemList = topRatedItemsLists;
+      public RecyclerAdapter(ArrayList<ItemsList> itemsLists, Context context,ArrayList<GenreList> genreLists1){
+          this.itemList = itemsLists;
           this.context = context;
+          this.genreLists=genreLists1;
 
       }
 
@@ -43,24 +46,41 @@ public class RecyclerAdapter extends RecyclerView.Adapter <RecyclerAdapter.MyVie
         String firstAirDate = itemList.get(position).getTvDate();
         String movieTitle = itemList.get(position).getMovieTitle();
         String tvTitle = itemList.get(position).getTvTitle();
+        int genre[] = itemList.get(position).getGenreIds();
+        String genreList="";
+
+        for( int i=0 ; i<genre.length ; i++){
+            for ( int j=0 ; j<genreLists.size() ; j++){
+                if(genre[i]==genreLists.get(j).getId())
+                {   genreList = genreList+ genreLists.get(j).getName()+","+" ";
+                    break;}
+            }
+        }
+
+//        String finalGenreList =genreList.substring(0, genreList.length() - 2) ;
+
+        holder.genreTextView.setText(genreList.substring(0, genreList.length() - 2));
+
         float frating = itemList.get(position).getRating();
+        String rating = Float.toString(frating);
 
         if(releaseDate!=null)
         { year = releaseDate.split("-");}
         else
         { year = firstAirDate.split("-");}
 
-        String rating = Float.toString(frating);
-
         if(movieTitle!=null)
         { holder.nameTextView.setText(movieTitle); }
         else
         { holder.nameTextView.setText(tvTitle); }
 
+        if(frating!=0.0)
+        {holder.ratingTextView.setText(rating);}
+
 
         holder.yearTextView.setText(year[0]);
-        holder.ratingTextView.setText(rating);
-        Picasso.with(context).load("http://image.tmdb.org/t/p/w500"+ itemList.get(position).getImagePath())
+
+        Picasso.with(context).load("http://image.tmdb.org/t/p/w185"+ itemList.get(position).getImagePath())
                 .into(holder.poster);
 
 

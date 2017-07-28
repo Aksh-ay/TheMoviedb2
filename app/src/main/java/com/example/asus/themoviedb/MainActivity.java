@@ -12,6 +12,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.asus.themoviedb.movies_tvs.MoviesFragment;
+import com.example.asus.themoviedb.movies_tvs.TvShowsFragment;
+import com.example.asus.themoviedb.persons.PersonsFragment;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 

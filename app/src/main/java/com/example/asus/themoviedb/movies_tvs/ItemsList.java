@@ -1,4 +1,4 @@
-package com.example.asus.themoviedb;
+package com.example.asus.themoviedb.movies_tvs;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -7,18 +7,22 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class ItemsList {
+
+    //For Movies
     @SerializedName("release_date")
     private String movieDate;
-
-    @SerializedName("first_air_date")
-    private String tvDate;
 
     @SerializedName("title")
     private  String movieTitle;
 
+    //For Tv Shows
+    @SerializedName("first_air_date")
+    private String tvDate;
+
     @SerializedName("name")
     private  String tvTitle;
 
+    //Common in both
     @SerializedName("id")
     private  int id;
 
@@ -27,15 +31,6 @@ public class ItemsList {
 
     @SerializedName("vote_average")
     private  float rating;
-
-    public String getTvTitle() {
-        return tvTitle;
-    }
-
-    public String getTvDate() {
-
-        return tvDate;
-    }
 
     @SerializedName("genre_ids")
     private int genreIds[];
@@ -70,5 +65,11 @@ public class ItemsList {
     public String getOverview() {
         return overview;
     }
+
+    public String getTvTitle() {
+        return tvTitle;
+    }
+
+    public String getTvDate() {return tvDate; }
 }
 

@@ -1,4 +1,6 @@
-package com.example.asus.themoviedb;
+package com.example.asus.themoviedb.network;
+
+import com.example.asus.themoviedb.persons.PersonsList;
 
 import java.util.ArrayList;
 
