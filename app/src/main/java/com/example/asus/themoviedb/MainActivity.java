@@ -1,8 +1,8 @@
 package com.example.asus.themoviedb;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -12,17 +12,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.asus.themoviedb.NowPlaying_list.NowPlayingFragment;
-import com.example.asus.themoviedb.Popular_list.PopularFragment;
-import com.example.asus.themoviedb.TopRated_list.TopRatedFragment;
-import com.example.asus.themoviedb.Upcoming_list.UpcomingMoviesFragment;
-
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    TabLayout tabLayout;
-    ViewPager viewPager;
-    ViewPagerAdapter viewPagerAdapter;
+
+    public static final String API_KEY ="06d7dd44f460db5a7ba23188c8bc64b2";
 
 
     @Override
@@ -32,28 +26,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
-
-        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-
-        viewPagerAdapter.addFragments(new NowPlayingFragment(),"Now Playing");
-        viewPagerAdapter.addFragments(new UpcomingMoviesFragment(),"Upcoming");
-        viewPagerAdapter.addFragments(new PopularFragment(),"Popular");
-        viewPagerAdapter.addFragments(new TopRatedFragment(),"Top Rated");
-        viewPager.setAdapter(viewPagerAdapter);
-
-        tabLayout.setupWithViewPager(viewPager);
-
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -63,6 +35,12 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        MoviesFragment m = new MoviesFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.main_framelayout, m).commit();
+
+
     }
 
     @Override
@@ -101,19 +79,42 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
 
-        if (id == R.id.nav_movies) {
-            // Handle the camera action
-        } else if (id == R.id.nav_tv_shows) {
+            int id = item.getItemId();
+            Fragment fragment = null;
+            Class fragmentClass = null;
 
-        } else if (id == R.id.nav_people) {
+            if (id == R.id.nav_movies) {
+                fragmentClass = MoviesFragment.class;
+                // Handle the camera action
+            } else if (id == R.id.nav_tv_shows) {
 
-        } else if (id == R.id.nav_manage) {
+                fragmentClass = TvShowsFragment.class;
 
-        } else if (id == R.id.nav_contact) {
+            } else if (id == R.id.nav_people) {
 
-        }
+                fragmentClass = PersonsFragment.class;
+                setTitle(item.getTitle());
+
+
+            } else if (id == R.id.nav_manage) {
+
+            } else if (id == R.id.nav_contact) {
+
+            }
+            try {
+                fragment = (Fragment) fragmentClass.newInstance();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            // Insert the fragment by replacing any existing fragment
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.main_framelayout, fragment).commit();
+
+            // Highlight the selected item has been done by NavigationView
+            item.setChecked(true);
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

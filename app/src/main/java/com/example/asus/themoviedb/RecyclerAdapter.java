@@ -1,4 +1,4 @@
-package com.example.asus.themoviedb.NowPlaying_list;
+package com.example.asus.themoviedb;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.asus.themoviedb.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -19,11 +18,13 @@ import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter <RecyclerAdapter.MyViewHolder> {
 
-      private ArrayList<NowPlayingMovieList> movieListThumblains;
+      private ArrayList<ItemsList> itemList;
       private Context context;
+      String[] year;
 
-      public RecyclerAdapter(ArrayList<NowPlayingMovieList> movieListThumblains , Context context){
-          this.movieListThumblains = movieListThumblains;
+
+      public RecyclerAdapter(ArrayList<ItemsList> topRatedItemsLists, Context context){
+          this.itemList = topRatedItemsLists;
           this.context = context;
 
       }
@@ -31,21 +32,35 @@ public class RecyclerAdapter extends RecyclerView.Adapter <RecyclerAdapter.MyVie
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.now_playing_recycler_element,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.items_recycler_root_element,parent,false);
 
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        String releaseDate = movieListThumblains.get(position).getReleaseDate();
-        String[] year = releaseDate.split("-");
-        String rating = Float.toString(movieListThumblains.get(position).getRating());
+        String releaseDate = itemList.get(position).getMovieDate();
+        String firstAirDate = itemList.get(position).getTvDate();
+        String movieTitle = itemList.get(position).getMovieTitle();
+        String tvTitle = itemList.get(position).getTvTitle();
+        float frating = itemList.get(position).getRating();
 
-        holder.nameTextView.setText(movieListThumblains.get(position).getTitle());
+        if(releaseDate!=null)
+        { year = releaseDate.split("-");}
+        else
+        { year = firstAirDate.split("-");}
+
+        String rating = Float.toString(frating);
+
+        if(movieTitle!=null)
+        { holder.nameTextView.setText(movieTitle); }
+        else
+        { holder.nameTextView.setText(tvTitle); }
+
+
         holder.yearTextView.setText(year[0]);
         holder.ratingTextView.setText(rating);
-        Picasso.with(context).load("http://image.tmdb.org/t/p/w500"+movieListThumblains.get(position).getImagePath())
+        Picasso.with(context).load("http://image.tmdb.org/t/p/w500"+ itemList.get(position).getImagePath())
                 .into(holder.poster);
 
 
@@ -53,7 +68,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter <RecyclerAdapter.MyVie
 
     @Override
     public int getItemCount() {
-        return movieListThumblains.size();
+        return itemList.size();
     }
 
     public static  class MyViewHolder extends RecyclerView.ViewHolder{
@@ -74,4 +89,5 @@ public class RecyclerAdapter extends RecyclerView.Adapter <RecyclerAdapter.MyVie
             ratingTextView = (TextView) itemView.findViewById(R.id.ratingTextView);
         }
     }
+
 }
