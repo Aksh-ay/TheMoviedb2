@@ -29,6 +29,10 @@ public class ItemsList {
     @SerializedName("poster_path")
     private  String imagePath;
 
+    @SerializedName("backdrop_path")
+    private  String backdropPath;
+
+
     @SerializedName("vote_average")
     private  float rating;
 
@@ -71,5 +75,7 @@ public class ItemsList {
     }
 
     public String getTvDate() {return tvDate; }
+
+    public String getBackropPath() { return backdropPath; }
 }
 

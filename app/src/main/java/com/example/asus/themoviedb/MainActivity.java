@@ -90,10 +90,43 @@ public class MainActivity extends AppCompatActivity
 
             if (id == R.id.nav_movies) {
                 fragmentClass = MoviesFragment.class;
+                setTitle("TheMovieDB");
                 // Handle the camera action
             } else if (id == R.id.nav_tv_shows) {
 
                 fragmentClass = TvShowsFragment.class;
+                setTitle("TheMovieDB");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             } else if (id == R.id.nav_people) {
 

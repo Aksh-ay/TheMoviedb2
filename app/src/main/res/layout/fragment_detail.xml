@@ -1,0 +1,93 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context="com.example.asus.themoviedb.movies_tvs.DetailFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="DETAIL FRAGMENT"
+        android:id="@+id/overview"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/overview"
+        android:layout_marginTop="15dp"
+        android:layout_alignLeft="@+id/overview"
+        android:layout_alignStart="@+id/overview"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:text="Release Date: "
+        android:id="@+id/releaseDate"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/releaseDate"
+        android:layout_alignLeft="@+id/overview"
+        android:layout_alignStart="@+id/overview"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:text="Directed By: "
+        android:id="@+id/directedBy"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/directedBy"
+        android:layout_marginTop="10dp"
+        android:layout_alignLeft="@+id/overview"
+        android:layout_alignStart="@+id/overview"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:text="Budget: "
+        android:id="@+id/budget"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/budget"
+        android:layout_marginTop="10dp"
+        android:layout_alignLeft="@+id/overview"
+        android:layout_alignStart="@+id/overview"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:text="Revenue: "
+        android:id="@+id/revenue"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/directedByTextView"
+        android:text="N/A"
+        android:layout_toRightOf="@+id/directedBy"
+        android:layout_alignBottom="@+id/directedBy"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/budgetTextView"
+        android:text="N/A"
+        android:layout_toRightOf="@+id/budget"
+        android:layout_alignBottom="@+id/budget"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/revenueTextView"
+        android:text="N/A"
+        android:layout_toRightOf="@+id/revenue"
+        android:layout_alignBottom="@+id/revenue"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dateTextView"
+        android:text="N/A"
+        android:layout_toRightOf="@+id/releaseDate"
+        android:layout_alignBottom="@+id/releaseDate"/>
+
+
+</RelativeLayout>

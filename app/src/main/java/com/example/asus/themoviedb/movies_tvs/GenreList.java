@@ -14,6 +14,13 @@ public class GenreList {
     @SerializedName("name")
     String name;
 
+    @SerializedName("job")
+    String job;
+
+    public String getJob() {
+        return job;
+    }
+
     public int getId() {
         return id;
     }

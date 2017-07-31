@@ -23,12 +23,20 @@ public class RecyclerAdapter extends RecyclerView.Adapter <RecyclerAdapter.MyVie
       private ArrayList<GenreList> genreLists;
       private Context context;
       String[] year;
+      private NotesClickListener mListener;
+
+    public interface NotesClickListener {
+        void onItemClick(View view,int position);
+
+    }
 
 
-      public RecyclerAdapter(ArrayList<ItemsList> itemsLists, Context context,ArrayList<GenreList> genreLists1){
+
+    public RecyclerAdapter(ArrayList<ItemsList> itemsLists, Context context,ArrayList<GenreList> genreLists1 ,NotesClickListener listener){
           this.itemList = itemsLists;
           this.context = context;
-          this.genreLists=genreLists1;
+          this.genreLists = genreLists1;
+          this.mListener = listener;
 
       }
 
@@ -37,7 +45,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter <RecyclerAdapter.MyVie
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.items_recycler_root_element,parent,false);
 
-        return new MyViewHolder(view);
+        return new MyViewHolder(view,mListener);
     }
 
     @Override
@@ -52,14 +60,21 @@ public class RecyclerAdapter extends RecyclerView.Adapter <RecyclerAdapter.MyVie
         for( int i=0 ; i<genre.length ; i++){
             for ( int j=0 ; j<genreLists.size() ; j++){
                 if(genre[i]==genreLists.get(j).getId())
-                {   genreList = genreList+ genreLists.get(j).getName()+","+" ";
-                    break;}
+                {  if (i!=genre.length-1)
+                   {  genreList = genreList+ genreLists.get(j).getName()+", ";
+                       break;
+                   }
+                   else
+                   {
+                      genreList = genreList+ genreLists.get(j).getName();
+                      break;
+                   }
+                }
+
             }
         }
 
-//        String finalGenreList =genreList.substring(0, genreList.length() - 2) ;
-
-        holder.genreTextView.setText(genreList.substring(0, genreList.length() - 2));
+        holder.genreTextView.setText(genreList);
 
         float frating = itemList.get(position).getRating();
         String rating = Float.toString(frating);
@@ -91,22 +106,33 @@ public class RecyclerAdapter extends RecyclerView.Adapter <RecyclerAdapter.MyVie
         return itemList.size();
     }
 
-    public static  class MyViewHolder extends RecyclerView.ViewHolder{
+    public static  class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView poster;
         TextView yearTextView;
         TextView nameTextView;
         TextView genreTextView;
         TextView ratingTextView;
+        NotesClickListener mNotesClickListener;
 
-        public MyViewHolder(View itemView) {
+        public MyViewHolder(View itemView, NotesClickListener mListener) {
             super(itemView);
+            itemView.setOnClickListener(this);
 
+            mNotesClickListener = mListener;
             poster = (ImageView) itemView.findViewById(R.id.mainImageView);
             yearTextView = (TextView) itemView.findViewById(R.id.yearTextView);
             nameTextView = (TextView) itemView.findViewById(R.id.nameTextView);
             genreTextView = (TextView) itemView.findViewById(R.id.genreTextView);
             ratingTextView = (TextView) itemView.findViewById(R.id.ratingTextView);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+
+            if(position != RecyclerView.NO_POSITION)
+               { mNotesClickListener.onItemClick(v,position); }
         }
     }
 

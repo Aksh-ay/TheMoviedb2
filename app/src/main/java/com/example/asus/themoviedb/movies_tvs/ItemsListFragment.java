@@ -1,6 +1,7 @@
 package com.example.asus.themoviedb.movies_tvs;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -19,6 +20,8 @@ import com.example.asus.themoviedb.network.GenresResponse;
 import com.example.asus.themoviedb.network.ItemsResponse;
 
 import java.util.ArrayList;
+import android.os.Handler;
+
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -52,10 +55,34 @@ public class ItemsListFragment extends Fragment {
         itemsLists = new ArrayList<>();
         genreLists = new ArrayList<>();
 
+
+
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new RecyclerAdapter(itemsLists, getContext(),genreLists);
+        adapter = new RecyclerAdapter(itemsLists, getContext(), genreLists, new RecyclerAdapter.NotesClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                final int pos = position;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent i = new Intent(getContext(),ItemDetailActivity.class);
+                        i.putExtra("id",itemsLists.get(pos).getId());
+                       if(MoviesFragment.movieFlag)
+                       {   i.putExtra("title",itemsLists.get(pos).getMovieTitle());
+                           i.putExtra("releaseDate",itemsLists.get(pos).getMovieDate());}
+                        else
+                       {    i.putExtra("title",itemsLists.get(pos).getTvTitle());
+                            i.putExtra("releaseDate",itemsLists.get(pos).getTvDate()); }
+                        i.putExtra("Iconpath",itemsLists.get(pos).getImagePath());
+                        i.putExtra("BackDrop",itemsLists.get(pos).getBackropPath());
+                        startActivity(i);
+
+                    }
+                }, 200);
+            }
+        });
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
         if (getArguments()!=null)
@@ -137,7 +164,6 @@ public class ItemsListFragment extends Fragment {
             public void onResponse(Call<GenresResponse> call, Response<GenresResponse> response) {
                 GenresResponse genreResponse = response.body();
                 ArrayList<GenreList> genreListResponse = genreResponse.getGenres();
-                Log.i("GENRES",genreListResponse.get(0).getName()+genreListResponse.get(1).getName()+genreListResponse.get(2).getName());
                 onGenresDownloadComplete(genreListResponse);
             }
 

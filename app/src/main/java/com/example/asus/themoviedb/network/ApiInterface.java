@@ -2,6 +2,7 @@ package com.example.asus.themoviedb.network;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -23,6 +24,10 @@ public interface ApiInterface {
     @GET("movie/upcoming")
     Call <ItemsResponse> getUpcomingList(@Query("api_key") String api_key);
 
+    @GET("movie/{movie_id}")
+    Call<DetailsResponse> getMovieDetails(@Path("movie_id") int id,@Query("api_key") String api_key, @Query("append_to_response") String response);
+
+
     //------------------------------------------------------------------------------------//
 
     //for fetching tv_shows
@@ -37,6 +42,10 @@ public interface ApiInterface {
 
     @GET("tv/top_rated")
     Call<ItemsResponse> getTvTopRated(@Query("api_key") String api_key);
+
+    @GET("tv/{tv_id}")
+    Call<DetailsResponse> getTvDetails(@Path("tv_id") int id,@Query("api_key") String api_key);
+
 
     //====================================================================================//
 
@@ -54,6 +63,8 @@ public interface ApiInterface {
     Call<GenresResponse> getTvShowsGenre(@Query("api_key") String api_key);
 
     //====================================================================================//
+
+
 
 
 
